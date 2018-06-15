@@ -1,0 +1,39 @@
+// var docs = dll.CreateMarkdownDocumentProject(DestinationPath, dll.FullName.Split(',').First() + " Assembly");
+// docs.Compile();
+
+// foreach(Type type in dll.GetExportedTypes().Where(t => typeof(IEntity).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract))
+// {
+//     //dynamic c = Activator.CreateInstance(type);
+//     output.WriteLine("## {0} Class", type.Name);
+    
+//     output.WriteLine("");
+//     output.WriteLine ("### Properties");
+//     output.WriteLine("");
+
+//     var props = type.GetProperties();
+
+//     if (props.Length == 0) 
+//     {
+//         output.WriteLine("No Properties Exist.");
+        
+//     }
+//     else
+//     {
+//         props.ToList().ForEach(p => output.WriteLine("- {0} Property", p.Name));
+//     }
+    
+//     output.WriteLine("");
+//     output.WriteLine ("### Methods");
+//     output.WriteLine("");
+
+//     var methods = type.GetMethods().Where(m => !m.IsSpecialName);
+
+//     if (methods.Count() == 0) 
+//     {
+//         output.WriteLine("No Methods Exist.");
+//     }
+//     else
+//     {
+//         methods.ToList().ForEach(m => output.WriteLine("- {0} Method", m.Name));
+//     }
+// }
