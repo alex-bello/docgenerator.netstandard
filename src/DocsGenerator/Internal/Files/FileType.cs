@@ -1,12 +1,13 @@
-namespace DocsGenerator
+namespace DocsGenerator.Internal.Files
 {
-    public enum DocsFileType
+    public enum FileType
     {
         Assembly,
         Class,
         Index,
         Method,
         Namespace,
-        Property
+        Property,
+        Type
     }
 }

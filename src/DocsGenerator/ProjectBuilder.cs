@@ -6,12 +6,12 @@ using DocsGenerator.Extensions;
 
 namespace DocsGenerator
 {
-    public class DocsProjectBuilder
+    public class ProjectBuilder
     {
     
     #region Constructors
 
-        public DocsProjectBuilder(DocsProjectSettings settings)
+        public ProjectBuilder(ProjectSettings settings)
         {
             Settings = settings;
         }
@@ -20,17 +20,17 @@ namespace DocsGenerator
 
     #region Properties
 
-        public DocsProjectSettings Settings { get; }
+        public ProjectSettings Settings { get; }
 
-        public DocsProject Project { get; set; }
+        public Project Project { get; set; }
 
     #endregion
 
     #region Methods
 
-        public DocsProject GenerateProject()
+        public Project GenerateProject()
         {
-            return new DocsProject(Settings);
+            return new Project(Settings);
         }
 
     #endregion

@@ -28,6 +28,11 @@ namespace DocsGenerator.Extensions
             return assembly.FullName.Split(',').First();
         }
 
+        public static string GetSimpleName(this AssemblyName assemblyName)
+        {
+            return assemblyName.FullName.Split(',').First();
+        }
+
         public static string ToFileName(this Assembly assembly)
         {
             return assembly.GetSimpleName().Replace(".", "-").ToLower();

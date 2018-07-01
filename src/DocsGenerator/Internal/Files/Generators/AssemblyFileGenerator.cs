@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using DocsGenerator.Extensions;
+using DocsGenerator.Output.Generators;
 
-namespace DocsGenerator.Generators
+namespace DocsGenerator.Internal.Files.Generators
 {
     public class AssemblyFileGenerator : IFileGenerator
     {
-        public AssemblyFileGenerator(Assembly assembly, DocsProjectSettings settings, string title)
+        public AssemblyFileGenerator(Assembly assembly, ProjectSettings settings, string title)
         {
             Assembly = assembly;
             Settings = settings;
@@ -17,7 +19,9 @@ namespace DocsGenerator.Generators
 
         public Assembly Assembly { get; set; }
 
-        public DocsProjectSettings Settings { get; set; }
+        public ProjectSettings Settings { get; set; }
+
+        public IEnumerable<IOutputGenerator> OutputGenerators { get; set; }
 
         public string Title { get; set; }
 

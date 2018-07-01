@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace DocsGenerator.Generators
+namespace DocsGenerator.Internal.Files.Generators
 {
     public interface IFileGenerator
     {

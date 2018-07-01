@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using DocsGenerator.Extensions;
 
-namespace DocsGenerator.Generators
+namespace DocsGenerator.Internal.Files.Generators
 {
     public class IndexFileGenerator : IFileGenerator
     {
-        public IndexFileGenerator(IEnumerable<Assembly> assemblies, DocsProjectSettings settings)
+        public IndexFileGenerator(IEnumerable<Assembly> assemblies, ProjectSettings settings)
         {
             Assemblies = assemblies;
             Settings = settings;
@@ -16,7 +16,7 @@ namespace DocsGenerator.Generators
 
         public IEnumerable<Assembly> Assemblies { get; set; }
 
-        public DocsProjectSettings Settings { get; set; }
+        public ProjectSettings Settings { get; set; }
 
         public StringWriter Generate()
         {

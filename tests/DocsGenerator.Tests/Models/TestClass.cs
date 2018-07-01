@@ -8,7 +8,7 @@ namespace DocsGenerator.Tests.Models
     /// <summary>
     /// This is a sample class used to test the functionality of the documentation generator.
     /// </summary>
-    public class TestClass : IEntity
+    public class TestClass
     {
         /// <summary>
         /// The Id of the Test Class Entity.
