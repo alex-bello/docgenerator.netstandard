@@ -329,5 +329,6 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
-# Remove generated docs
+# Remove generated and publish folder
 docs/**
+out/**

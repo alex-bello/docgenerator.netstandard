@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using DocsGenerator.Internal.Files;
+using DocsGenerator.Internal.XmlCodeComments;
 using DocsGenerator.Output;
 using DocsGenerator.Output.Generators;
 
@@ -18,6 +19,8 @@ namespace DocsGenerator
         public string NamespacesFolder { get; set; }
 
         public ICollection<IFileDefinition> FileDefinitions { get; set; } = new List<IFileDefinition>();
+
+        public ICollection<IXmlCodeComment> XmlCodeComments { get; set; } = new List<IXmlCodeComment>();
         
         public string ProjectName { get; set; }
 

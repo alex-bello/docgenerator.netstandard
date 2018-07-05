@@ -23,6 +23,11 @@ namespace DocsGenerator.Extensions
             }            
         }
 
+        public static string GetSimpleName(this string fullName)
+        {
+            return fullName.Split(',').First();
+        }
+
         public static string GetSimpleName(this Assembly assembly)
         {
             return assembly.FullName.Split(',').First();

@@ -56,8 +56,9 @@ namespace DocsGenerator
             .PrepareOutputFolder()
             .CompileSourceProject()
             .SetEntryAssembly()
-            .LoadReferencedAssemblies();
-            // .GenerateIndexFiles(); // Generate the project's index file
+            .LoadReferencedAssemblies()
+            .GenerateInternalFiles()
+            .LoadXmlComments(); // Generate the project's index file
             //.GenerateAssemblyFiles();
 
             return 0;

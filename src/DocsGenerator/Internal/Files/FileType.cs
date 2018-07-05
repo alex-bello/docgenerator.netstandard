@@ -5,6 +5,7 @@ namespace DocsGenerator.Internal.Files
         Assembly,
         Class,
         Index,
+        Interface,
         Method,
         Namespace,
         Property,
