@@ -22,40 +22,13 @@ namespace DocsGenerator.Tools
             XDocument doc = XDocument.Load(path);
 
             foreach( var x  in doc.Descendants().Where(d => d.Name.LocalName == "member"))
-            {
-                var content = x.Attributes().Where(a => a.Name.LocalName == "name").FirstOrDefault()?.Value.Split(':');
-                XmlCodeCommentType type = XmlCodeCommentType.Field;
-                
-                // Get element name and switch on it.
-                switch (content[0])
-                {
-                    case "T":
-                        type = XmlCodeCommentType.Type;
-                        break;
-                    case "F":
-                        type = XmlCodeCommentType.Field;
-                        break;
-                    case "P":
-                        type = XmlCodeCommentType.Property;
-                        break;
-                    case "M":
-                        type = XmlCodeCommentType.Method;
-                        break;
-                    case "E":
-                        type = XmlCodeCommentType.Event;
-                        break;
-                    default:
-                        type = XmlCodeCommentType.Unknown;
-                        break;
-                }
-
-                var comment = new XmlCodeComment(content[1], type, x.Elements().Where(e => e.Name.LocalName == "summary").FirstOrDefault()?.Value.RemoveNewLines().TrimAll());
-                project.Settings.XmlCodeComments.Add(comment); 
+            {              
+                project.Settings.XmlCodeComments.Add(x.ToXmlCodeComment()); 
             }
 
             foreach (var xmlFile in project.Settings.XmlCodeComments)
             {
-                project.LogVerbose($"XML File: {xmlFile.Name}, {xmlFile.CommentType.ToString()}, {xmlFile.Summary ?? "<null>"}");
+                project.LogVerbose($"XML File: {xmlFile.Name}, {xmlFile.CommentType.ToString()}, {xmlFile.Summary ?? "<null>"}, {xmlFile.Remarks ?? "<null>"}");
             }
 
             return project;

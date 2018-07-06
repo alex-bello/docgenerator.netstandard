@@ -4,6 +4,11 @@ namespace DocsGenerator.Internal.XmlCodeComments
 {
     public class XmlCodeComment : IXmlCodeComment
     {
+        public XmlCodeComment()
+        {
+
+        }
+
         public XmlCodeComment(string name, XmlCodeCommentType commentType, string summary = null, string returns = null)
         {
             Name = name;
@@ -16,12 +21,14 @@ namespace DocsGenerator.Internal.XmlCodeComments
         
         public XmlCodeCommentType CommentType { get; set; }
         
+        public string Remarks { get; set; }
+
+        public string Returns { get; set; }
+
         public string Summary { get; set; }        
         
         public Dictionary<string, string> Parameters { get; set; } = new Dictionary<string, string>();
 
         public Dictionary<string, string> TypeParameters { get; set; } = new Dictionary<string, string>();
-        
-        public string Returns { get; set; }
     }
 }
