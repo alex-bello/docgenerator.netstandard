@@ -9,8 +9,7 @@ namespace DocsGenerator.Tools
         {
             // Load dlls from TempFolder and log if verbose enabled
             project.LogVerbose("Setting project entry assembly...");
-            project.EntryAssembly = Assembly.LoadFile(Path.Combine(project.Settings.TempFolder, Path.GetFileNameWithoutExtension(project.Settings.SourcePath) + ".dll"));
-            project.Assemblies.Add(project.EntryAssembly);
+            project.EntryAssembly = project.LoadFromAssemblyPath(Path.Combine(project.Settings.TempFolder, Path.GetFileNameWithoutExtension(project.Settings.SourcePath) + ".dll"));
             project.LogVerbose("Setting project entry assembly complete.");
 
             return project;

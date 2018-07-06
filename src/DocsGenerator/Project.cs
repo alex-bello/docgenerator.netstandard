@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using AutoMapper;
-using DocsGenerator.Extensions;
-using DocsGenerator.Internal.Files;
-using DocsGenerator.Output;
+using System.Runtime.Loader;
 using DocsGenerator.Tools;
 
 namespace DocsGenerator
 {
-    public class Project
+    public class Project : AssemblyLoadContext
     {
 
     #region Constructors
@@ -28,11 +24,9 @@ namespace DocsGenerator
 
     #region Properties
 
-        protected internal ICollection<Assembly> Assemblies { get; set; } = new List<Assembly>();
+        protected internal ICollection<Assembly> Assemblies { get; set;} = new List<Assembly>();
 
         protected internal Assembly EntryAssembly { get; set; }
-
-        //protected internal ICollection<AssemblyDocsFileInfo> AssemblyDocsFileInfos { get; set; } = new List<AssemblyDocsFileInfo>();
 
         public ProjectSettings Settings { get; }
 
@@ -59,7 +53,7 @@ namespace DocsGenerator
             .LoadReferencedAssemblies()
             .GenerateInternalFiles()
             .LoadXmlComments(); // Generate the project's index file
-            //.GenerateAssemblyFiles();
+            //.GenerateOutputFiles();
 
             return 0;
         }
@@ -70,21 +64,6 @@ namespace DocsGenerator
 
             var assembly = Assembly.LoadFile(Path.Combine(Settings.TempFolder, Path.GetFileNameWithoutExtension(Settings.SourcePath) + ".dll"));
             
-            // Assemblies.ToList().ForEach(a => {
-            //     //var outfile = Path.Combine(Settings.AssembliesFolder, a.ToFileName() + ".md");
-            //     AssemblyDocsFileInfos.Add(new AssemblyDocsFileInfo { 
-            //         FullName = a.FullName,
-            //         ExportedTypes = a.GetUserTypes()
-            //     });
-                // var file = new AssemblyDocsFileInfo(outfile, DocsFileType.Assembly, OutputFormat.Markdown)
-                //     .SetTitle(a.GetSimpleName())
-                //     .UseEngine(new AssemblyFileGenerator(a, Settings, a.GetSimpleName()));
-                    //.Compile();
-                
-                // file.Compile();
-                // Console.WriteLine($"Assembly file created for {a.GetSimpleName()} at {outfile}");
-            // });
-
             assembly.GetReferencedAssemblies().ToList().ForEach(ra => {
                 try
                 {
@@ -99,11 +78,23 @@ namespace DocsGenerator
                 }
             });
 
-            // AssemblyDocsFileInfos.Add(Mapper.Map<AssemblyDocsFileInfo>(assembly));
-
             return this;
         }
-        
+
+        protected override Assembly Load(AssemblyName assemblyName)
+        {
+            return null;
+        }
+
+        protected internal Assembly LoadAssemblyFromFile(string path)
+        {
+            if (path == null) throw new ArgumentNullException(nameof(path));
+
+            var loadedAssembly = LoadFromAssemblyPath(path);
+            Assemblies.Add(loadedAssembly);
+            return loadedAssembly;
+        }
+
         // internal Project GenerateAssemblyFiles()
         // {
         //     if (!Assemblies.Any()) throw new ArgumentException("Assemblies property must contain at least one Assembly to document.");
@@ -120,7 +111,7 @@ namespace DocsGenerator
         //                 .SetTitle(a.GetSimpleName())
         //                 .UseEngine(new AssemblyFileGenerator(a, Settings, a.GetSimpleName()));
         //                 //.Compile();
-                    
+
         //             file.Compile();
         //             Console.WriteLine($"Assembly file created for {a.GetSimpleName()} at {outfile}");
         //         });
@@ -128,7 +119,7 @@ namespace DocsGenerator
         //     return this;
         // }
 
-    #endregion
+        #endregion
 
     }
 }

@@ -18,11 +18,11 @@ namespace DocsGenerator.Tools
                 try
                 {
                     project.LogVerbose($"Loading Assembly at {file}");
-                    var assembly = Assembly.LoadFrom(file);
-                    project.Assemblies.Add(assembly);
+                    var assembly = project.LoadAssemblyFromFile(file);
+                    //project.Assemblies.Add(assembly);
                     Console.WriteLine($"{assembly.GetSimpleName()} Loaded from file {file}.");
                 }
-                catch (Exception ex) // This error is thrown for assemblies from nuget and so we load the dll directly.
+                catch  // This error is thrown for assemblies from nuget and so we load the dll directly.
                 {
                     project.LogVerbose($"Assembly not loaded.");
                 }

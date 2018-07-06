@@ -6,6 +6,7 @@ namespace DocsGenerator.Internal.XmlCodeComments
         Field,
         Property,
         Method, 
-        Event
+        Event,
+        Unknown
     }
 }
