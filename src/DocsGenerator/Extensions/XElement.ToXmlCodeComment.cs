@@ -18,7 +18,7 @@ namespace DocsGenerator.Utils
             var codeComment = new XmlCodeComment();
 
             var name = element.Attributes().Where(a => a.Name.LocalName == "name").FirstOrDefault()?.Value.Split(':');
-            codeComment.Name = name[1];
+            codeComment.FullName = name[1];
                 
                 // Get element name and switch on it.
             switch (name[0])

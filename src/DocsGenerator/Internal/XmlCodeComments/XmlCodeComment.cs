@@ -11,13 +11,13 @@ namespace DocsGenerator.Internal.XmlCodeComments
 
         public XmlCodeComment(string name, XmlCodeCommentType commentType, string summary = null, string returns = null)
         {
-            Name = name;
+            FullName = name;
             CommentType = commentType;
             Summary = summary;
             Returns = returns;
         }
 
-        public string Name { get; set; }
+        public string FullName { get; set; }
         
         public XmlCodeCommentType CommentType { get; set; }
         

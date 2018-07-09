@@ -5,7 +5,7 @@ namespace DocsGenerator.Internal.XmlCodeComments
 {
     public interface IXmlCodeComment
     {
-        string Name { get; set; }
+        string FullName { get; set; }
 
         XmlCodeCommentType CommentType { get; set; }
 
@@ -16,5 +16,7 @@ namespace DocsGenerator.Internal.XmlCodeComments
         string Summary { get; set; }
 
         Dictionary<string, string> Parameters { get; set; }
+
+        Dictionary<string, string> TypeParameters { get; set; }
     }
 }

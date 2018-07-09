@@ -28,7 +28,7 @@ namespace DocsGenerator.Tools
 
             foreach (var xmlFile in project.Settings.XmlCodeComments)
             {
-                project.LogVerbose($"XML File: {xmlFile.Name}, {xmlFile.CommentType.ToString()}, {xmlFile.Summary ?? "<null>"}, {xmlFile.Remarks ?? "<null>"}");
+                project.LogVerbose($"XML File: {xmlFile.FullName}, {xmlFile.CommentType.ToString()}, {xmlFile.Summary ?? "<null>"}, {xmlFile.Remarks ?? "<null>"}");
             }
 
             return project;
